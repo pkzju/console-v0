@@ -1,0 +1,36 @@
+/****************************************************************************
+**
+** Copyright (C) 2016 pkzju
+** Version	: 0.0.1.0
+** Author	: pkzju
+** 
+****************************************************************************/
+
+#include "mainwindow/mainwindow.h"
+#include "dialogs/logindialog.h"
+
+#include <QApplication>
+#include <QTextCodec>
+#include <QLoggingCategory>
+
+int main(int argc, char *argv[])
+{
+    // TODO uncomment this line before release
+    // right now we always need it
+    QLoggingCategory::setFilterRules(QStringLiteral("qt.modbus* = true"));
+
+    QApplication app(argc, argv);
+    QApplication::setOrganizationName("ZJU");
+    QApplication::setOrganizationDomain("https:");
+    QApplication::setApplicationName("SuperConsole");
+    QApplication::setWindowIcon(QIcon(":/images/skin/images/ico.ico"));
+
+//    LoginDialog *_loginDialog = new LoginDialog;
+//    _loginDialog->show();
+
+    MainWindow *main = MainWindow::getInstance();
+    main->setAttribute(Qt::WA_DeleteOnClose);
+    main->show();
+
+    return app.exec();
+}
